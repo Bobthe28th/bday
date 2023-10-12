@@ -1,6 +1,6 @@
 name: CTF
 version: 0.1
 author: Bobthe28th
-main: me.bobthe28th.CTF.Main
+main: me.bobthe28th.ctf.Main
 description: Capture the flag updated
 api-version: 1.20
