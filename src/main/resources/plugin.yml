@@ -8,9 +8,6 @@ commands:
   test:
     description: for debug
     usage: /<command>
-  pvp:
-    description: Toggles pvp
-    usage: /<command>
   start:
     description: Starts a game
     usage: /<command> <game>
