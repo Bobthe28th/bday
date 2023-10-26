@@ -16,6 +16,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
 public class GameManager implements Listener {
@@ -33,8 +34,26 @@ public class GameManager implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this,plugin);
     }
 
+    public void setGame(Class<? extends Game> game) {
+        if (currentGame != null) {
+            currentGame.disable();
+        }
+        if (game != null) {
+            try {
+                Constructor<? extends Game> constructor = game.getConstructor(Main.class);
+                currentGame = constructor.newInstance(plugin);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     public HashMap<Player, GamePlayer> getGamePlayers() {
         return gamePlayers;
+    }
+
+    public void setMoveRule(MoveRule moveRule) {
+        this.moveRule = moveRule;
     }
 
     public void setDamageRule(DamageRule damageRule) {
@@ -45,11 +64,15 @@ public class GameManager implements Listener {
         this.breakBlocks = breakBlocks;
     }
 
-    public DamageRule damageRule() {
+    public MoveRule getMoveRule() {
+        return moveRule;
+    }
+
+    public DamageRule getDamageRule() {
         return damageRule;
     }
 
-    public boolean breakBlocks() {
+    public boolean getBreakBlocks() {
         return breakBlocks;
     }
 
@@ -134,7 +157,7 @@ public class GameManager implements Listener {
         Player player = event.getPlayer();
         Advancement advancement = event.getAdvancement();
         if (advancement.getDisplay() != null && advancement.getDisplay().getDescription().startsWith("\ue240")) return;
-        for(String criteria: advancement.getCriteria()) {
+        for(String criteria : advancement.getCriteria()) {
             player.getAdvancementProgress(advancement).revokeCriteria(criteria);
         }
     }
