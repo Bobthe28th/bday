@@ -2,8 +2,8 @@ package me.bobthe28th.ctf.music;
 
 public class Music {
 
-    String name;
-    Long length;
+    private final String name;
+    private final Long length;
 
     public Music(String name, Long length) {
         this.name = name;

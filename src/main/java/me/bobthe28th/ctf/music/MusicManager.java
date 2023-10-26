@@ -9,38 +9,17 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MusicManager {
 
-    Main plugin;
-    Music currentlyPlaying;
+    private final Main plugin;
+    private Music currentlyPlaying;
 
-    BukkitTask musicLength;
-    MusicQueue queue;
+    private BukkitTask musicLength;
+    private final MusicQueue queue;
 
-    List<Music> musicList = Arrays.asList(
-//            new Music("battle1",3380L),
-//            new Music("battle2",3280L),
-//            new Music("battle3",2480L),
-//            new Music("battle4",3240L),
-//            new Music("battle5",3000L),
-//            new Music("battle6",4980L),
-//            new Music("battle7",2560L),
-//            new Music("battle8",3300L),
-//            new Music("battle9",3100L),
-//            new Music("battle10",2100L),
-//            new Music("bonusround1",2320L),
-//            new Music("bonusround2",3140L),
-//            new Music("bonusround3",3360L),
-//            new Music("bonusround4",4120L),
-//            new Music("bonusround5",2460L),
-//            new Music("bonusround6",2460L),
-//            new Music("zombiefun",1640L),
-//            new Music("elevator",2400L),
-//            new Music("winnersong",1920L)
-    );
+    List<Music> musicList = List.of();
 
     public MusicManager(Main plugin) {
         this.plugin = plugin;

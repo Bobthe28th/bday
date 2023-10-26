@@ -5,9 +5,9 @@ import java.util.List;
 
 public class MusicQueue {
 
-    List<Music> queue = new ArrayList<>();
-    List<Music> loopQueue = new ArrayList<>();
-    int loopIndex = 0;
+    private final List<Music> queue = new ArrayList<>();
+    private final List<Music> loopQueue = new ArrayList<>();
+    private int loopIndex = 0;
 
     public void addQueue(Music music) {
         queue.add(music);

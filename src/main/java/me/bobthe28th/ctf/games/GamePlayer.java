@@ -8,13 +8,8 @@ import org.bukkit.potion.PotionEffect;
 
 public class GamePlayer implements Listener {
 
-    Player player;
-    Main plugin;
-//    ScoreboardController scoreboardController;
-//    MoveOption moveOption = MoveOption.ALL;
-
-//    BukkitTask hotbarTask;
-//    TextComponent hotbar = new TextComponent("\ue241");
+    private final Player player;
+    private final Main plugin;
 
     public GamePlayer(Main plugin, Player player) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -27,7 +22,6 @@ public class GamePlayer implements Listener {
         this.player.setGlowing(false);
         this.player.setInvisible(false);
         this.player.setPlayerListHeaderFooter("Deez", "Nuts");
-//        scoreboardController = new ScoreboardController(this);
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
@@ -43,7 +37,6 @@ public class GamePlayer implements Listener {
     }
 
     public void removeNotMap() {
-//        scoreboardController.remove();
         HandlerList.unregisterAll(this);
     }
 }
