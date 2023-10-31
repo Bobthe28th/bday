@@ -55,6 +55,13 @@ public class ScoreboardObjective {
         }
     }
 
+    public void remove() {
+        for (ScoreboardController controller : objectives.keySet()) {
+            objectives.get(controller).unregister();
+        }
+        objectives.clear();
+    }
+
     public HashMap<ScoreboardController, Objective> getObjectives() {
         return objectives;
     }

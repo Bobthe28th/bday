@@ -2,12 +2,14 @@ package me.bobthe28th.bday.games;
 
 import me.bobthe28th.bday.Main;
 import me.bobthe28th.bday.games.managers.GameManager;
+import me.bobthe28th.bday.scoreboard.ScoreboardObjective;
 
 public abstract class Game {
 
     protected GameState state = GameState.LOBBY;
     protected final Main plugin;
     protected final GameManager manager;
+    protected ScoreboardObjective objective;
 
     protected GameMap map;
 

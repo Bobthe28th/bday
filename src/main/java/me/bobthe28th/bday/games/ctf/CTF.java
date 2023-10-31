@@ -4,6 +4,7 @@ import me.bobthe28th.bday.Main;
 import me.bobthe28th.bday.games.Game;
 import me.bobthe28th.bday.games.GamePlayer;
 import me.bobthe28th.bday.games.GameState;
+import me.bobthe28th.bday.scoreboard.ScoreboardObjective;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 
@@ -11,11 +12,12 @@ import java.util.HashMap;
 
 public class CTF extends Game {
 
-    private HashMap<String,CTFTeam> teams = new HashMap<>();
+    private final HashMap<String,CTFTeam> teams = new HashMap<>();
     public CTF(Main plugin) {
         super(plugin);
         teams.put("Blue",new CTFTeam("Blue", ChatColor.BLUE, Material.BLUE_BANNER));
         teams.put("Red",new CTFTeam("Red", ChatColor.RED, Material.RED_BANNER));
+        objective = new ScoreboardObjective("ctf","Capture the Flag");
     }
 
     public HashMap<String,CTFTeam> getTeams() {
@@ -39,6 +41,6 @@ public class CTF extends Game {
 
     @Override
     public void disable() {
-
+        objective.remove();
     }
 }

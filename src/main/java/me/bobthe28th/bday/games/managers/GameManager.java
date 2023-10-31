@@ -11,6 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.advancement.Advancement;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -89,7 +90,7 @@ public class GameManager implements Listener {
         return breakBlocks;
     }
 
-    //TODO swap hands, food, armor stand, interact with item frame
+    //TODO swap hands, food, armor stand, interact with item frame, drop item
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityDamage(EntityDamageEvent event) {
@@ -99,6 +100,15 @@ public class GameManager implements Listener {
             if (event instanceof EntityDamageByEntityEvent byEntityEvent && byEntityEvent.getDamager() instanceof Player) {
                 event.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if (event.isCancelled()) return;
+        if (!(event.getDamager() instanceof Player damager)) return;
+        if (gamePlayers.containsKey(damager) && event.getEntity() instanceof LivingEntity damaged) {
+            gamePlayers.get(damager).damage(damaged, event.getFinalDamage());
         }
     }
 
