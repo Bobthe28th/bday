@@ -1,6 +1,7 @@
 package me.bobthe28th.bday.games;
 
 import me.bobthe28th.bday.Main;
+import me.bobthe28th.bday.scoreboard.ScoreboardController;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -10,6 +11,7 @@ public class GamePlayer implements Listener {
 
     private final Player player;
     private final Main plugin;
+    ScoreboardController scoreboardController;
 
     public GamePlayer(Main plugin, Player player) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -25,10 +27,15 @@ public class GamePlayer implements Listener {
         for (PotionEffect effect : player.getActivePotionEffects()) {
             player.removePotionEffect(effect.getType());
         }
+        scoreboardController = new ScoreboardController(this);
     }
 
     public Player getPlayer() {
         return player;
+    }
+
+    public ScoreboardController getScoreboardController() {
+        return scoreboardController;
     }
 
     public void remove() {

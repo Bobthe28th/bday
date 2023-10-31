@@ -13,10 +13,10 @@ import java.util.List;
 public class ScoreboardTeam {
 
     private final String name;
-    private final HashMap<ScoreboardController, Team> teams = new HashMap<ScoreboardController, Team>();
+    private final HashMap<ScoreboardController, Team> teams = new HashMap<>();
     private ChatColor color;
     private Location spawnLocation;
-    private List<Entity> globalMembers = new ArrayList<>();
+    private final List<Entity> globalMembers = new ArrayList<>();
 
     public ScoreboardTeam(String name) {
         this.name = name;
@@ -46,6 +46,14 @@ public class ScoreboardTeam {
                 team.addEntry(entity.getUniqueId().toString());
             }
         }
+    }
+
+    public Location getSpawnLocation() {
+        return spawnLocation;
+    }
+
+    public void setSpawnLocation(Location spawnLocation) {
+        this.spawnLocation = spawnLocation.clone();
     }
 
     public void addMember(Entity member, ScoreboardController controller) {

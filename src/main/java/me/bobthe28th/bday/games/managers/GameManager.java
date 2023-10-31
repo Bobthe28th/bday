@@ -89,6 +89,8 @@ public class GameManager implements Listener {
         return breakBlocks;
     }
 
+    //TODO swap hands, food, armor stand, interact with item frame
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityDamage(EntityDamageEvent event) {
         if (damageRule == DamageRule.NONE && event.getCause() != EntityDamageEvent.DamageCause.VOID && event.getEntity() instanceof Player) {
