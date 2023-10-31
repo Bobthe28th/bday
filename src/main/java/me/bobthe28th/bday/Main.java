@@ -1,7 +1,7 @@
-package me.bobthe28th.ctf;
+package me.bobthe28th.bday;
 
-import me.bobthe28th.ctf.games.GameManager;
-import me.bobthe28th.ctf.music.MusicManager;
+import me.bobthe28th.bday.games.managers.GameManager;
+import me.bobthe28th.bday.music.MusicManager;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 

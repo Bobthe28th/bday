@@ -1,6 +1,6 @@
-package me.bobthe28th.ctf.games;
+package me.bobthe28th.bday.games;
 
-import me.bobthe28th.ctf.Main;
+import me.bobthe28th.bday.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;

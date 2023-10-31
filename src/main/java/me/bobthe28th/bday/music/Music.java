@@ -1,4 +1,4 @@
-package me.bobthe28th.ctf.music;
+package me.bobthe28th.bday.music;
 
 public class Music {
 

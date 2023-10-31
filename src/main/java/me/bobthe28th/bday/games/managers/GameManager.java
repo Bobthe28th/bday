@@ -1,7 +1,12 @@
-package me.bobthe28th.ctf.games;
+package me.bobthe28th.bday.games.managers;
 
-import me.bobthe28th.ctf.Main;
-import me.bobthe28th.ctf.util.TextUtil;
+import me.bobthe28th.bday.Main;
+import me.bobthe28th.bday.games.Game;
+import me.bobthe28th.bday.games.GamePlayer;
+import me.bobthe28th.bday.games.GameState;
+import me.bobthe28th.bday.games.rule.DamageRule;
+import me.bobthe28th.bday.games.rule.MoveRule;
+import me.bobthe28th.bday.util.TextUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -25,13 +30,21 @@ public class GameManager implements Listener {
     private DamageRule damageRule = DamageRule.NONE;
     private boolean breakBlocks = false;
     private MoveRule moveRule = MoveRule.ALL;
-    private final HashMap<Player,GamePlayer> gamePlayers = new HashMap<>();
+    private final HashMap<Player, GamePlayer> gamePlayers = new HashMap<>();
 
     private Game currentGame = null;
 
     public GameManager(Main plugin) {
         this.plugin = plugin;
-        plugin.getServer().getPluginManager().registerEvents(this,plugin);
+        //plugin.getServer().getPluginManager().registerEvents(this,plugin);
+        //if (Bukkit.getScoreboardManager() != null) {
+        //    Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
+        //    for (Team team : scoreboard.getTeams()) {
+        //        if (team.getName().startsWith("gameteam_")) {
+        //            team.unregister();
+        //        }
+        //    }
+        //}
     }
 
     public void setGame(Class<? extends Game> game) {

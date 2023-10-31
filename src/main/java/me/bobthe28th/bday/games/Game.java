@@ -1,6 +1,7 @@
-package me.bobthe28th.ctf.games;
+package me.bobthe28th.bday.games;
 
-import me.bobthe28th.ctf.Main;
+import me.bobthe28th.bday.Main;
+import me.bobthe28th.bday.games.managers.GameManager;
 
 public abstract class Game {
 
@@ -25,6 +26,14 @@ public abstract class Game {
     public void end() {
         disable();
         state = GameState.END;
+    }
+
+    public GameManager getManager() {
+        return manager;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
     }
 
     public GameState getState() {

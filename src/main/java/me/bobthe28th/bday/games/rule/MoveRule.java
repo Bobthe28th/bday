@@ -1,4 +1,4 @@
-package me.bobthe28th.ctf.games;
+package me.bobthe28th.bday.games.rule;
 
 public enum MoveRule {
     NONE,

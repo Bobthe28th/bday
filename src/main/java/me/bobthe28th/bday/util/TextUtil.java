@@ -1,4 +1,4 @@
-package me.bobthe28th.ctf.util;
+package me.bobthe28th.bday.util;
 
 import org.bukkit.ChatColor;
 
