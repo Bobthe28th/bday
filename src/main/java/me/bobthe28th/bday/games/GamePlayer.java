@@ -82,19 +82,27 @@ public class GamePlayer implements Listener {
         }
     }
 
-    public void updateEnemyHealth(double healthProgress) {
+    public void updateEnemyHealth(LivingEntity entity) {
+        updateEnemyHealth(entity, 0);
+    }
+    public void updateEnemyHealth(LivingEntity entity, double damage) {
+        AttributeInstance maxHealth = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+        if (maxHealth == null) return;
+        double health = entity.getHealth() - damage;
+        double healthProgress = Math.min(1.0,Math.max(0.0,health / maxHealth.getValue()));
         enemyHealth.setProgress(healthProgress);
         enemyHealth.setTitle(enemy.getName());
         enemyHealth.setVisible(true);
     }
 
     public void damage(LivingEntity entity, double damage) {
-        AttributeInstance maxHealth = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-        if (maxHealth == null) return;
-        double health = entity.getHealth() - damage;
         enemy = entity;
-        updateEnemyHealth(Math.min(1.0,Math.max(0.0,health / maxHealth.getValue())));
         setEnemyHealthCooldown();
+        updateEnemyHealth(entity, damage);
+    }
+
+    public LivingEntity getEnemy() {
+        return enemy;
     }
 
     public void remove() {

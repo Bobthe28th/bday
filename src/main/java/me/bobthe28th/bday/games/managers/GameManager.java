@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.util.Vector;
 
@@ -106,9 +107,30 @@ public class GameManager implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         if (event.isCancelled()) return;
+        if (!(event.getEntity() instanceof LivingEntity damaged)) return;
+        for (GamePlayer player : gamePlayers.values()) {
+            if (player.getEnemy() == damaged) {
+                player.updateEnemyHealth(damaged);
+            }
+        }
         if (!(event.getDamager() instanceof Player damager)) return;
-        if (gamePlayers.containsKey(damager) && event.getEntity() instanceof LivingEntity damaged) {
+        if (gamePlayers.containsKey(damager)) {
             gamePlayers.get(damager).damage(damaged, event.getFinalDamage());
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onEntityRegainHealth(EntityRegainHealthEvent event) {
+        if (event.getRegainReason() == EntityRegainHealthEvent.RegainReason.SATIATED && event.getEntity() instanceof Player player && gamePlayers.containsKey(player)) {
+            event.setCancelled(true);
+            return;
+        }
+        if (event.getEntity() instanceof LivingEntity entity) {
+            for (GamePlayer player : gamePlayers.values()) {
+                if (player.getEnemy() == entity) {
+                    player.updateEnemyHealth(entity);
+                }
+            }
         }
     }
 
