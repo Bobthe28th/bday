@@ -14,7 +14,6 @@ public class Main extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.GOLD + "This is a test!");
         gameManager = new GameManager(this);
         musicManager = new MusicManager(this);
-        new GameManager(this);
     }
 
     @Override

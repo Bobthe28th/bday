@@ -21,9 +21,9 @@ public class GamePlayer implements Listener {
     protected final Main plugin;
     private final ScoreboardController scoreboardController;
 
-    private BossBar enemyHealth;
+    private final BossBar enemyHealth;
     private LivingEntity enemy;
-    private final double enemyHealthCooldownMax = 4.0;
+    private final double enemyHealthCooldownMax = 20.0;
     private double enemyHeathCooldown = 0.0;
     private boolean onEnemyHealthCooldown = false;
 
@@ -45,6 +45,7 @@ public class GamePlayer implements Listener {
         }
         scoreboardController = new ScoreboardController(this);
         enemyHealth = Bukkit.createBossBar("", BarColor.RED, BarStyle.SEGMENTED_10);
+        Bukkit.broadcastMessage("Created new player");
         enemyHealth.setVisible(false);
         enemyHealth.addPlayer(player);
     }

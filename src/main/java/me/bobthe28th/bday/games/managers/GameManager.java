@@ -7,6 +7,7 @@ import me.bobthe28th.bday.games.GameState;
 import me.bobthe28th.bday.games.rule.DamageRule;
 import me.bobthe28th.bday.games.rule.MoveRule;
 import me.bobthe28th.bday.util.TextUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -38,15 +39,10 @@ public class GameManager implements Listener {
 
     public GameManager(Main plugin) {
         this.plugin = plugin;
-        //plugin.getServer().getPluginManager().registerEvents(this,plugin);
-        //if (Bukkit.getScoreboardManager() != null) {
-        //    Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-        //    for (Team team : scoreboard.getTeams()) {
-        //        if (team.getName().startsWith("gameteam_")) {
-        //            team.unregister();
-        //        }
-        //    }
-        //}
+        plugin.getServer().getPluginManager().registerEvents(this,plugin);
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            gamePlayers.put(player,new GamePlayer(plugin,player));
+        }
     }
 
     public void setGame(Class<? extends Game> game) {
@@ -128,7 +124,7 @@ public class GameManager implements Listener {
         if (event.getEntity() instanceof LivingEntity entity) {
             for (GamePlayer player : gamePlayers.values()) {
                 if (player.getEnemy() == entity) {
-                    player.updateEnemyHealth(entity);
+                    player.updateEnemyHealth(entity, -event.getAmount());
                 }
             }
         }
