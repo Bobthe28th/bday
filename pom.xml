@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.bobthe28th</groupId>
-    <artifactId>CTF</artifactId>
+    <artifactId>bday</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
