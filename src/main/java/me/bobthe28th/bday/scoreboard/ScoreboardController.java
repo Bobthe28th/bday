@@ -1,6 +1,6 @@
 package me.bobthe28th.bday.scoreboard;
 
-import me.bobthe28th.bday.games.GamePlayer;
+import me.bobthe28th.bday.games.player.GamePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.Scoreboard;
 

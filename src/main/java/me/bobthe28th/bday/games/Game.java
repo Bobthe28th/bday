@@ -2,6 +2,7 @@ package me.bobthe28th.bday.games;
 
 import me.bobthe28th.bday.Main;
 import me.bobthe28th.bday.games.managers.GameManager;
+import me.bobthe28th.bday.games.player.GamePlayer;
 import me.bobthe28th.bday.scoreboard.ScoreboardObjective;
 
 public abstract class Game {

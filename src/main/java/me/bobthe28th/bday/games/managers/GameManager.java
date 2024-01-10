@@ -2,7 +2,7 @@ package me.bobthe28th.bday.games.managers;
 
 import me.bobthe28th.bday.Main;
 import me.bobthe28th.bday.games.Game;
-import me.bobthe28th.bday.games.GamePlayer;
+import me.bobthe28th.bday.games.player.GamePlayer;
 import me.bobthe28th.bday.games.GameState;
 import me.bobthe28th.bday.games.rule.DamageRule;
 import me.bobthe28th.bday.games.rule.MoveRule;
@@ -105,8 +105,8 @@ public class GameManager implements Listener {
         if (event.isCancelled()) return;
         if (!(event.getEntity() instanceof LivingEntity damaged)) return;
         for (GamePlayer player : gamePlayers.values()) {
-            if (player.getEnemy() == damaged) {
-                player.updateEnemyHealth(damaged);
+            if (player.getEnemyHealthBar().getEnemy() == damaged) {
+                player.getEnemyHealthBar().updateEnemyHealth(damaged);
             }
         }
         if (!(event.getDamager() instanceof Player damager)) return;
@@ -123,8 +123,8 @@ public class GameManager implements Listener {
         }
         if (event.getEntity() instanceof LivingEntity entity) {
             for (GamePlayer player : gamePlayers.values()) {
-                if (player.getEnemy() == entity) {
-                    player.updateEnemyHealth(entity, -event.getAmount());
+                if (player.getEnemyHealthBar().getEnemy() == entity) {
+                    player.getEnemyHealthBar().updateEnemyHealth(entity, -event.getAmount());
                 }
             }
         }

@@ -1,7 +1,7 @@
 package me.bobthe28th.bday.music;
 
 import me.bobthe28th.bday.Main;
-import me.bobthe28th.bday.games.GamePlayer;
+import me.bobthe28th.bday.games.player.GamePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.SoundCategory;
